@@ -26,6 +26,14 @@
     </plugins>
   </build>
   <dependencies>
+  <dependency>
+  
+  	<groupId>co.quickwork.botkit</groupId>
+	<artifactId>co.quickwork.botkit</artifactId>
+	<version>1.0</version>
+	<scope>compile</scope>
+  
+  </dependency>
   
   
   
