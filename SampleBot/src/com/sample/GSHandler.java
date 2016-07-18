@@ -52,7 +52,7 @@ public class GSHandler extends HttpServlet {
 		{
 			gsApi.sendMessage("Hi there I'M Ayyub's Bot",gsContext.getContextObj());
 		}
-		if(gsContext.isMessage() && gsContext.isFacebook())
+		if(gsContext.isMessage() )
 		{
 			System.out.println(gsContext.getMessage());
 			
@@ -66,8 +66,10 @@ public class GSHandler extends HttpServlet {
 			list.add(i1);
 			list.add(i2);
 			String cat = widget.getFacebookCatalouge(list, new String []{"like","more info"});
-			gsApi.sendMessage(cat,gsContext.getContextObj());
+			//gsApi.sendMessage(cat,gsContext.getContextObj());
 			
+			String image = "{ \"type\": \"image\", \"originalUrl\": \"http://techstory.in/wp-content/uploads/2015/05/sachin-tendulkar.jpg\", \"previewUrl\": \"http://techstory.in/wp-content/uploads/2015/05/sachin-tendulkar.jpg\" }";
+			gsApi.sendMessage(image,gsContext.getContextObj());
 			
 			
 			
