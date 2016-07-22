@@ -11,6 +11,12 @@ public class CandidateProxy implements ICandidateProxy{
 		
 		return null;
 	}
+
+	@Override
+	public JSONObject updateUser(JSONObject contextobj) {
+	
+		return null;
+	}
  
 
 }

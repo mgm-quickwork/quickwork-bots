@@ -10,4 +10,6 @@ public interface ICandidateProxy {
 
 	public JSONObject getUserByContext(JSONObject contextobj);
 	
+	public JSONObject updateUser(JSONObject contextobj);
+	
    }

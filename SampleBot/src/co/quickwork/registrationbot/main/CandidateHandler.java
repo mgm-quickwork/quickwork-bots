@@ -18,7 +18,7 @@ import co.quickwork.bot.common.apihandler.ICandidateProxy;
 import co.quickwork.bot.common.model.BotAuthCredential;
 
 @WebServlet("/RegistrationHandler")
-public class RegistrationHandler extends HttpServlet {
+public class CandidateHandler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 			
 	private String apikey = "f13cba5597b044dbc4f43bd261b626c8";
@@ -27,7 +27,7 @@ public class RegistrationHandler extends HttpServlet {
      BotAuthCredential botAuthCredential= new BotAuthCredential(botname, apikey);
 	GupshupBotKit botkit = GupshupBotKit.getInstance(botname, apikey);
 	
-    public RegistrationHandler() {
+    public CandidateHandler() {
         super();
 
     }
