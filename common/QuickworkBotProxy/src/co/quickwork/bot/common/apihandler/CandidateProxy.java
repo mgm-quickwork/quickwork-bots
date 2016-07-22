@@ -7,7 +7,7 @@ import co.quickwork.bot.common.model.BotAuthCredential;
 public class CandidateProxy implements ICandidateProxy{
 
 	@Override
-	public JSONObject getUserByContext(BotAuthCredential botAuthCredential) {
+	public JSONObject getUserByContext(JSONObject contextobj) {
 		
 		return null;
 	}

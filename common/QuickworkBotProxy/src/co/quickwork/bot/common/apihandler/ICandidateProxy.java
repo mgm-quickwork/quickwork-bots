@@ -8,6 +8,6 @@ import com.mongodb.util.JSON;
 
 public interface ICandidateProxy {
 
-	public JSONObject getUserByContext(BotAuthCredential botAuthCredential);
+	public JSONObject getUserByContext(JSONObject contextobj);
 	
    }
