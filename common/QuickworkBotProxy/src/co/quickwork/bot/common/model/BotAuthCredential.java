@@ -5,9 +5,8 @@ public class BotAuthCredential {
 	private String botAuthKey;
 	private String contextObj;
 	
-	public BotAuthCredential(String botName,String botAuthKey,String contextObj) {
+	public BotAuthCredential(String botName,String botAuthKey) {
 		this.botName = botName;
 		this.botAuthKey = botAuthKey;
-		this.contextObj = contextObj;
 	}
 }

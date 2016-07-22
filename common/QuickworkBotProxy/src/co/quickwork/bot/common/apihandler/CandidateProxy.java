@@ -1,13 +1,16 @@
 package co.quickwork.bot.common.apihandler;
 
+import org.json.JSONObject;
+import com.mongodb.util.JSON;
 import co.quickwork.bot.common.model.BotAuthCredential;
-import co.quickwork.bot.common.model.CandidateProfile;
 
-public class CandidateProxy {
- 
-	public CandidateProfile getUserByContext(BotAuthCredential objAuthCredential){
-	
-		CandidateProfile objCandidateProfile = null; 
-		return objCandidateProfile;
+public class CandidateProxy implements ICandidateProxy{
+
+	@Override
+	public JSONObject getUserByContext(BotAuthCredential botAuthCredential) {
+		
+		return null;
 	}
+ 
+
 }
