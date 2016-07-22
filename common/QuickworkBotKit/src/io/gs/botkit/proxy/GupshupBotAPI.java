@@ -13,51 +13,55 @@ import org.json.JSONObject;
 
 import io.gs.botkit.konstants.CommonConstants;
 
-public class GupshupBotAPI
-{
+public class GupshupBotAPI {
 
 	private String botname;
 	private String apikey;
-	
 
-	public GupshupBotAPI(String botname, String apikey)
-	{
+	public GupshupBotAPI(String botname, String apikey) {
 		this.botname = botname;
 		this.apikey = apikey;
 	}
 
-	public void sendMessage(String message, String contextObj)
-	{
-		try
-		{
-			sendPost(message, contextObj);
-		} 
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-
-	}
-	public void sendMessage(String message, JSONObject contextObj)
-	{
-		try
-		{
-			sendPost(message, contextObj.toString());
-		} 
-		catch (Exception e)
-		{
+	public void sendMessage(String message, JSONObject contextObj) {
+		try {
+			sendPost(message, contextObj.toString(), false);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	private String sendPost(String message, String contextObj) throws Exception
-	{
+	public void sendMessage(String message, JSONObject contextObj, boolean isBypass) {
+		try {
+			sendPost(message, contextObj.toString(), isBypass);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private String sendPost(String message, String contextObj, boolean isBypass) throws Exception {
 		System.out.println(contextObj);
 		String url = CommonConstants.GS_API_BASE_URL + botname + "/msg";
 		String encodedContext = URLEncoder.encode(contextObj, "UTF-8");
-		String encodedMessage = URLEncoder.encode(message, "UTF-8");
-		String bodyData = "context=" + encodedContext + "&message=" + encodedMessage;
+
+		String bodyData;
+		if (!isBypass) {
+			String encodedMessage = URLEncoder.encode(message, "UTF-8");
+			bodyData = "context=" + encodedContext + "&message=" + encodedMessage;
+		} else {
+			JSONObject ctx = new JSONObject(contextObj);
+			JSONObject fbMessage = new JSONObject();
+
+			fbMessage.put("message", message);
+			JSONObject recepientObj = new JSONObject();
+			recepientObj.put("id", ctx.getString("contextid"));
+			fbMessage.put("recipient", recepientObj);
+			System.out.println("Message:" + fbMessage.toString());
+			String encodedMessage = URLEncoder.encode(fbMessage.toString(), "UTF-8");
+			bodyData = "context=" + encodedContext + "&message=" + encodedMessage + "&bypass=" + true;
+		}
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod("POST");
@@ -76,8 +80,7 @@ public class GupshupBotAPI
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
 		StringBuffer response = new StringBuffer();
-		while ((inputLine = in.readLine()) != null)
-		{
+		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
 		}
 		in.close();
