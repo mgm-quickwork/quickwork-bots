@@ -1,10 +1,6 @@
-package co.quickwork.bot.common.apihandler;
+package co.quickwork.bot.common.handler;
 
 import org.json.JSONObject;
-
-import co.quickwork.bot.common.model.BotAuthCredential;
-
-import com.mongodb.util.JSON;
 
 public interface ICandidateProxy {
 

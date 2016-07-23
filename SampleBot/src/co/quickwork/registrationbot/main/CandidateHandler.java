@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.quickwork.bot.common.apihandler.CandidateProxy;
-import co.quickwork.bot.common.apihandler.ICandidateProxy;
+import co.quickwork.bot.common.handler.CandidateProxy;
 import co.quickwork.bot.common.model.BotAuthCredential;
 
 @WebServlet("/RegistrationHandler")

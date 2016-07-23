@@ -1,8 +1,6 @@
-package co.quickwork.bot.common.apihandler;
+package co.quickwork.bot.common.handler;
 
 import org.json.JSONObject;
-import com.mongodb.util.JSON;
-import co.quickwork.bot.common.model.BotAuthCredential;
 
 public class CandidateProxy implements ICandidateProxy{
 
@@ -17,6 +15,4 @@ public class CandidateProxy implements ICandidateProxy{
 	
 		return null;
 	}
- 
-
 }
