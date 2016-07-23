@@ -9,6 +9,4 @@ public class VerifyProxy implements IVerifyProxy{
 		
 		return false;
 	}
-
-	
 }

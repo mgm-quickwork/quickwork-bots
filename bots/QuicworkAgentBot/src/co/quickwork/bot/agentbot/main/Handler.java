@@ -52,7 +52,5 @@ public class Handler extends HttpServlet {
 		if (gsContext.isImage()) {
 			System.out.println("Link:" + gsContext.getMessage());
 		}
-
 	}
-
 }

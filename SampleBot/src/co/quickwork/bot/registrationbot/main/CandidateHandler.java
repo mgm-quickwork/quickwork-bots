@@ -1,4 +1,4 @@
-package co.quickwork.registrationbot.main;
+package co.quickwork.bot.registrationbot.main;
 
 import io.gs.botkit.channel.ui.GupshupWidget;
 import io.gs.botkit.main.GupshupBotKit;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.quickwork.bot.common.handler.CandidateProxy;
 import co.quickwork.bot.common.model.BotAuthCredential;
+import co.quickwork.bot.registrationbot.interaction.RegistrationBot;
 
 @WebServlet("/RegistrationHandler")
 public class CandidateHandler extends HttpServlet {
@@ -22,8 +23,8 @@ public class CandidateHandler extends HttpServlet {
 			
 	private String apikey = "f13cba5597b044dbc4f43bd261b626c8";
 	private String botname = "MSampleBot";
-	 CandidateProxy candidateProxy= new CandidateProxy();
-     BotAuthCredential botAuthCredential= new BotAuthCredential(botname, apikey);
+	RegistrationBot registrationBot= new RegistrationBot();
+    BotAuthCredential botAuthCredential= new BotAuthCredential(botname, apikey);
 	GupshupBotKit botkit = GupshupBotKit.getInstance(botname, apikey);
 	
     public CandidateHandler() {
@@ -32,10 +33,21 @@ public class CandidateHandler extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		GupshupContext gsContext = botkit.createContext(request);	   
-        candidateProxy.getUserByContext(gsContext.getContextObj());
+		GupshupContext gsContext = botkit.createContext(request);	
+		GupshupBotAPI gsApi =  botkit.gupshupAPI();
+		if(gsContext.isBotMappedEvent())
+		{
+			gsApi.sendMessage("Hi there I'm Registration's Bot",gsContext.getContextObj());
+		}
+		if(gsContext.isMessage() )
+		{  
+			gsContext.getMessageObj();
+			String botMessage=registrationBot.getBotMessage(gsContext.getContextObj());
+			gsApi.sendMessage(botMessage,gsContext.getContextObj());	
+		}
+        
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
